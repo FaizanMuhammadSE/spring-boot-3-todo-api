@@ -37,4 +37,9 @@ public class Main {
         todo.setTask(request.task());
         todoRepository.save(todo);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteTodo(@PathVariable("id") Integer id) {
+        todoRepository.deleteById(id);
+    }
 }
