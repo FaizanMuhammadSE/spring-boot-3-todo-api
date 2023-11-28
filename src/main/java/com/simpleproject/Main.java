@@ -22,9 +22,14 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Todo> getTodos() {
         return todoRepository.findAll();
+    }
+
+    @GetMapping("/intro")
+    public String intro() {
+        return "I'm Todo API which will serve following GET/POST/DELETE/PUT";
     }
 
 }
