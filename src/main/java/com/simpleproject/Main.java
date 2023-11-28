@@ -2,9 +2,7 @@ package com.simpleproject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,4 +30,11 @@ public class Main {
         return "I'm Todo API which will serve following GET/POST/DELETE/PUT";
     }
 
+    record TodoRequest(String task) {}
+    @PostMapping
+    public void addTodo(@RequestBody TodoRequest request) {
+        Todo todo = new Todo();
+        todo.setTask(request.task());
+        todoRepository.save(todo);
+    }
 }
