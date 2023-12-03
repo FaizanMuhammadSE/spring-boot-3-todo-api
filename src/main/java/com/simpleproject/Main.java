@@ -42,4 +42,11 @@ public class Main {
     public void deleteTodo(@PathVariable("id") Integer id) {
         todoRepository.deleteById(id);
     }
+
+    @PutMapping("/update")
+    public void updateTodo(@RequestBody Todo reqTodo) {
+        TodoRequest newTodo = new TodoRequest(reqTodo.getTask());
+        deleteTodo(reqTodo.getId());
+        addTodo(newTodo);
+    }
 }
