@@ -1,18 +1,33 @@
 package com.simpleproject;
 
+import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.web.WebProperties;
+
 import java.util.Objects;
 
+@Entity
 public class Todo {
-    private Number id;
+    @Id
+    @SequenceGenerator(
+            name = "todo_id_sequence",
+            sequenceName = "todo_id_sequence",
+            initialValue = 1,
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "todo_id_sequence"
+    )
+    private Integer id;
     private String task;
 
-    public Todo(Number id,String task){
+    public Todo(Integer id, String task){
         this.id = id;
         this.task = task;
     }
     public Todo(){
     }
-    public Number getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -20,7 +35,7 @@ public class Todo {
         return task;
     }
 
-    public void setId(Number id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
