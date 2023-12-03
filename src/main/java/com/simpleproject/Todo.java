@@ -27,7 +27,7 @@ public class Todo {
     }
     public Todo(){
     }
-    public Number getId() {
+    public Integer getId() {
         return id;
     }
 
